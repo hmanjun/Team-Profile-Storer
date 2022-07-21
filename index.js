@@ -85,16 +85,22 @@ const addManager = () => {
 }
 
 const addEngineer = () =>{
-    inquirer.prompt(engiQues).then((response) =>{
-        const {name,id,email,github,addNext} = response
-        team.push(new Engineer(name,id,email,github))
+    return new Promise(resolve =>{
+        inquirer.prompt(engiQues).then((response) =>{
+            const {name,id,email,github} = response
+            team.push(new Engineer(name,id,email,github))
+            resolve("resolved")
+        })
     })
 }
 
 const addIntern = () =>{
-    inquirer.prompt(intQues).then((response) =>{
-        const {name,id,email,school,addNext} = response
-        team.push(new Intern(name,id,email,school))
+    return new Promise(resolve =>{
+        inquirer.prompt(intQues).then((response) =>{
+            const {name,id,email,school} = response
+            team.push(new Intern(name,id,email,school))
+            resolve("resolved")
+        })
     })
 }
 
@@ -114,19 +120,35 @@ const askAddAnother = () =>{
     
 }
 
-/*
-const getTeamInfo = new Promise((resolve, reject) => {
-    addManager()
-    let stopAdding = false
-    resolve()
-})
-*/
+const getData = async () =>{
+    await addManager()
+    let add
+    let type
+    await askAddAnother().then(response => {
+        if(response != "none"){
+            add = true
+            type = response
+        } 
+        else add = false
+    })
+    while(add){
+        if(type === "Engineer"){
+            await addEngineer()
+        } else {
+            await addIntern()
+        }
+        await askAddAnother().then(response =>{
+            if(response != "none"){
+                add = true
+                type = response
+            } 
+            else add = false
+        })
+    }
+}
 
 const init = async () =>{
-    await addManager()
-    await askAddAnother().then(response => {
-        console.log(response)
-    })
+    await getData()
     console.log(team)
 }
 
