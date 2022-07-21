@@ -1,3 +1,8 @@
+const inquirer = require("inquirer")
+const Manager = require("./lib/Manager")
+const Engineer = require("./lib/Engineer")
+const Intern = require("./lib/Intern")
+
 const mangQues = [
     {
         type: "input",
@@ -15,13 +20,13 @@ const mangQues = [
         message: "Enter the manager's email address: "
     },
     {
-        type: "input",
+        type: "number",
         name: "office",
         message: "Enter the manager's office number: "
     }
 ]
 
-const empQues = [
+const engiQues = [
     {
         type: "input",
         name: "name",
@@ -68,7 +73,7 @@ const intQues = [
     },
     {
         type: "input",
-        name: "github",
+        name: "school",
         message: "Enter the intern's school: "
     },
     {
@@ -78,3 +83,28 @@ const intQues = [
         choices: ["Employee","Intern","none"]
     }
 ]
+
+const team = []
+
+const addManager = () => {
+    inquirer.prompt(mangQues).then((response) =>{
+        const {name,id,email,office} = response
+        team.push(new Manager(name,id,email,office))
+    })
+}
+
+const addEngineer = () =>{
+    inquirer.prompt(engiQues).then((response) =>{
+        const {name,id,email,github,addNext} = response
+        team.push(new Engineer(name,id,email,github))
+        return addNext
+    })
+}
+
+const addIntern = () =>{
+    inquirer.prompt(intQues).then((response) =>{
+        const {name,id,email,school,addNext} = response
+        team.push(new Intern(name,id,email,school))
+        return addNext
+    })
+}
