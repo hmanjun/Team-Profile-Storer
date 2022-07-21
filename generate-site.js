@@ -8,16 +8,17 @@ const dynamicCards = (teamMembers) => {
                     <ul class="list-group">
                         <li class="list-group-item">ID: ${member.id}</li>
                         <li class="list-group-item">Email: ${member.email}</li>
-                        <li class="list-group-item">${lastInfo}</li>
+                        ${lastInfo}
                     </ul>
-                </div>`
+                </div>
+                `
     })
 }
 
 const lastData = (member) =>{
-    if(member.type === "Manager") return `Office number: ${member.office}`
-    if(member.type === "Engineer") return `Github: ${member.github}`
-    if(member.type === "Intern") return `School: ${member.school}`
+    if(member.type === "Manager") return `<li class="list-group-item">Office number: ${member.office}</li>`
+    if(member.type === "Engineer") return `<li class="list-group-item git" data-git="${member.github}">Github: ${member.github}</li>`
+    if(member.type === "Intern") return `<li class="list-group-item">School: ${member.school}</li>`
 }
 
 const generate = (data) =>{
@@ -45,6 +46,12 @@ const generate = (data) =>{
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+        <script>
+            $(document).on("click",".git",function(event){
+                let user = $(this).attr("data-git")
+                window.open("https://www.github.com/" + user)
+            })
+        </script>
       </body>
     
     </html>
