@@ -20,7 +20,7 @@ describe("Intern", function(){
         expect(worker.email).to.equal(email)
     })
 
-    it("takes and stores the parameter of github user", function(){
+    it("takes and stores the parameter of school", function(){
         const school = "UCSC"
         worker = new Intern("name",12,"email",school)
         expect(worker.school).to.equal(school)
