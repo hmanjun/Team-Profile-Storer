@@ -1,5 +1,3 @@
-const Choices = require("inquirer/lib/objects/choices")
-
 const mangQues = [
     {
         type: "input",
@@ -56,22 +54,22 @@ const intQues = [
     {
         type: "input",
         name: "name",
-        message: "Enter employee's name: "
+        message: "Enter intern's name: "
     },
     {
         type: "input",
         name: "id",
-        message: "Enter the employee's employee id: "
+        message: "Enter the intern's employee id: "
     },
     {
         type: "input",
         name: "email",
-        message: "Enter the employee's email address: "
+        message: "Enter the intern's email address: "
     },
     {
         type: "input",
         name: "github",
-        message: "Enter the employee's Github user: "
+        message: "Enter the intern's school: "
     },
     {
         type: "list",
