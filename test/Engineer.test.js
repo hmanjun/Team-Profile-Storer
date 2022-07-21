@@ -20,7 +20,7 @@ describe("Engineer", function(){
         expect(worker.email).to.equal(email)
     })
 
-    it("takes and stores the parameter of office number", function(){
+    it("takes and stores the parameter of github user", function(){
         const github = "sampleUser"
         worker = new Engineer("name",12,"email",github)
         expect(worker.github).to.equal(github)
