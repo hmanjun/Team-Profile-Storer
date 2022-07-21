@@ -2,6 +2,8 @@ const inquirer = require("inquirer")
 const Manager = require("./lib/Manager")
 const Engineer = require("./lib/Engineer")
 const Intern = require("./lib/Intern")
+const genHTML = require("./generate-site")
+const fs = require("fs")
 
 const mangQues = [
     {
@@ -149,6 +151,9 @@ const getData = async () =>{
 
 const init = async () =>{
     await getData()
+    fs.writeFile("test.html",genHTML(team), (err) => {
+        err ? console.log(err) : console.log("Success!")
+    })
     console.log(team)
 }
 
