@@ -162,7 +162,7 @@ const getData = async () =>{
 const init = async () =>{
     await getData()
     //write file after collecting all team members data
-    fs.writeFile("./dist/sample_index.html",genHTML(team), (err) => {
+    fs.writeFile("./dist/index.html",genHTML(team), (err) => {
         err ? console.log(err) : console.log("Success!")
     })
     console.log(team)
