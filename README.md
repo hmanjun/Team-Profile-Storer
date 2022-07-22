@@ -52,6 +52,8 @@ The generated html is stored in the folder 'dist'
 
 ![generated sites](/assets/img/gensite.PNG)
 
+### Source code located in 'dist' folder
+
 ## User Information
 
 [Github](https://github.com/hmanjun) |
