@@ -113,7 +113,7 @@ const askAddAnother = () =>{
                 type: "list",
                 name: "next",
                 message: "Choose the type of member to add next: ",
-                choices: ["Engineer","Intern","none"]
+                choices: ["Engineer","Intern","end program"]
             })
             .then((response) =>{
                 resove(response.next)
@@ -127,7 +127,7 @@ const getData = async () =>{
     let add
     let type
     await askAddAnother().then(response => {
-        if(response != "none"){
+        if(response != "end program"){
             add = true
             type = response
         } 
@@ -140,7 +140,7 @@ const getData = async () =>{
             await addIntern()
         }
         await askAddAnother().then(response =>{
-            if(response != "none"){
+            if(response != "end program"){
                 add = true
                 type = response
             } 
@@ -151,7 +151,7 @@ const getData = async () =>{
 
 const init = async () =>{
     await getData()
-    fs.writeFile("test.html",genHTML(team), (err) => {
+    fs.writeFile("./dist/test.html",genHTML(team), (err) => {
         err ? console.log(err) : console.log("Success!")
     })
     console.log(team)
