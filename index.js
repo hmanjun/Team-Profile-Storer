@@ -1,3 +1,4 @@
+//Install packages
 const inquirer = require("inquirer")
 const Manager = require("./lib/Manager")
 const Engineer = require("./lib/Engineer")
@@ -5,7 +6,8 @@ const Intern = require("./lib/Intern")
 const genHTML = require("./generate-site")
 const fs = require("fs")
 
-const mangQues = [
+//Questions for different employees
+const mangQues = [ //manager qs
     {
         type: "input",
         name: "name",
@@ -28,7 +30,7 @@ const mangQues = [
     }
 ]
 
-const engiQues = [
+const engiQues = [ //engineer qs
     {
         type: "input",
         name: "name",
@@ -51,7 +53,7 @@ const engiQues = [
     }
 ]
 
-const intQues = [
+const intQues = [ //interns qs
     {
         type: "input",
         name: "name",
@@ -76,6 +78,7 @@ const intQues = [
 
 const team = []
 
+//Call to ask user for manager data
 const addManager = () => {
     return new Promise(resolve =>{
         inquirer.prompt(mangQues).then((response) =>{
@@ -86,6 +89,7 @@ const addManager = () => {
     })
 }
 
+//call to ask user for engineer data
 const addEngineer = () =>{
     return new Promise(resolve =>{
         inquirer.prompt(engiQues).then((response) =>{
@@ -96,6 +100,7 @@ const addEngineer = () =>{
     })
 }
 
+//call to ask for intern data
 const addIntern = () =>{
     return new Promise(resolve =>{
         inquirer.prompt(intQues).then((response) =>{
@@ -106,6 +111,7 @@ const addIntern = () =>{
     })
 }
 
+//call to ask if user wants to add another employee
 const askAddAnother = () =>{
     return new Promise(resove =>{
         inquirer
@@ -122,10 +128,12 @@ const askAddAnother = () =>{
     
 }
 
+//handle calling each data ques in proper order
 const getData = async () =>{
     await addManager()
     let add
     let type
+    //initial ask if want to add another employee
     await askAddAnother().then(response => {
         if(response != "end program"){
             add = true
@@ -134,11 +142,13 @@ const getData = async () =>{
         else add = false
     })
     while(add){
+        //Using input, ask for appropriate employee data
         if(type === "Engineer"){
             await addEngineer()
         } else {
             await addIntern()
         }
+        //after getting member data, ask if user want to add another employee
         await askAddAnother().then(response =>{
             if(response != "end program"){
                 add = true
@@ -151,7 +161,8 @@ const getData = async () =>{
 
 const init = async () =>{
     await getData()
-    fs.writeFile("./dist/test.html",genHTML(team), (err) => {
+    //write file after collecting all team members data
+    fs.writeFile("./dist/sample_index.html",genHTML(team), (err) => {
         err ? console.log(err) : console.log("Success!")
     })
     console.log(team)

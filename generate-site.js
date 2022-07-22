@@ -1,6 +1,7 @@
 let cards = ""
 
 const dynamicCards = (teamMembers) => {
+    //Dynamically add each members data from the input team
     teamMembers.forEach((member) =>{
         const lastInfo = lastData(member)
         cards += `<div class ="card mx-2 my-2" style="width: 18rem;">
@@ -17,12 +18,14 @@ const dynamicCards = (teamMembers) => {
     })
 }
 
+//Check what role member is, and return appropriate html code
 const lastData = (member) =>{
     if(member.getRole() === "Manager") return `<li class="list-group-item">Office number: ${member.getOffice()}</li>`
     if(member.getRole() === "Engineer") return `<li class="list-group-item">Github: <a href="https://www.github.com/${member.getGithub()}" target="_blank">${member.getGithub()}</a></li>`
     if(member.getRole() === "Intern") return `<li class="list-group-item">School: ${member.getSchool()}</li>`
 }
 
+//Call to return html page
 const generate = (data) =>{
     dynamicCards(data)
     return `<!DOCTYPE html>
