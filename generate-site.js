@@ -5,10 +5,10 @@ const dynamicCards = (teamMembers) => {
         const lastInfo = lastData(member)
         cards += `<div class ="card mx-2 my-2" style="width: 18rem;">
                     <div class="card-body">
-                        <h5 class="card-title">${member.name} (${member.type})</h5>
+                        <h5 class="card-title">${member.getName()} (${member.getRole()})</h5>
                         <ul class="list-group">
-                            <li class="list-group-item">ID: ${member.id}</li>
-                            <li class="list-group-item">Email: <a href="mailto:${member.email}">${member.email}</a></li>
+                            <li class="list-group-item">ID: ${member.getId()}</li>
+                            <li class="list-group-item">Email: <a href="mailto:${member.getEmail()}">${member.getEmail()}</a></li>
                             ${lastInfo}
                         </ul>
                     </div>
@@ -18,9 +18,9 @@ const dynamicCards = (teamMembers) => {
 }
 
 const lastData = (member) =>{
-    if(member.type === "Manager") return `<li class="list-group-item">Office number: ${member.office}</li>`
-    if(member.type === "Engineer") return `<li class="list-group-item">Github: <a href="https://www.github.com/${member.github}" target="_blank">${member.github}</a></li>`
-    if(member.type === "Intern") return `<li class="list-group-item">School: ${member.school}</li>`
+    if(member.getRole() === "Manager") return `<li class="list-group-item">Office number: ${member.getOffice()}</li>`
+    if(member.getRole() === "Engineer") return `<li class="list-group-item">Github: <a href="https://www.github.com/${member.getGithub()}" target="_blank">${member.getGithub()}</a></li>`
+    if(member.getRole() === "Intern") return `<li class="list-group-item">School: ${member.getSchool()}</li>`
 }
 
 const generate = (data) =>{
