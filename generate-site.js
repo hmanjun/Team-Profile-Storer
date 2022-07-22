@@ -45,15 +45,7 @@ const generate = (data) =>{
                 ${cards}
             </div>
         </main>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
-        <script>
-            $(document).on("click",".git",function(event){
-                let user = $(this).attr("data-git")
-                window.open("https://www.github.com/" + user)
-            })
-        </script>
       </body>
     
     </html>
