@@ -14,33 +14,11 @@
     </header>
 
     <main>
-        <div id="members-container" class="d-flex">
-
+        <div id="members-container" class="d-flex justify-content-center flex-wrap mt-5 mb-5">
+            ${cards}
         </div>
     </main>
-
-
-
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
-    <!--File JS-->
-    <script>
-        //const memberData = ${data}
-        const data = []
-        const container = $("#members-container")
-        data.forEach((elem) =>{
-            const card = $("<div>").addClass("card-body")
-            const type = (typeof data)
-            const title = $("<h5>").addClass("card-title").text(data.name + type)
-            if(type === Manager){
-                const content = $("<p>").addClass("card-text").text(type + data.id + data.email + data.office)
-                card.append(title,content)
-            }
-            container.append(card)
-        })
-    </script>
   </body>
 
 </html>
