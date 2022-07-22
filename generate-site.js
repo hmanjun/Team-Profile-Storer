@@ -3,13 +3,15 @@ let cards = ""
 const dynamicCards = (teamMembers) => {
     teamMembers.forEach((member) =>{
         const lastInfo = lastData(member)
-        cards += `<div class="card-body">
-                    <h5 class="card-title">${member.name}</h5>
-                    <ul class="list-group">
-                        <li class="list-group-item">ID: ${member.id}</li>
-                        <li class="list-group-item">Email: ${member.email}</li>
-                        ${lastInfo}
-                    </ul>
+        cards += `<div class ="card mx-2 my-2" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">${member.name} (${member.type})</h5>
+                        <ul class="list-group">
+                            <li class="list-group-item">ID: ${member.id}</li>
+                            <li class="list-group-item">Email: <a href="mailto:${member.email}">${member.email}</a></li>
+                            ${lastInfo}
+                        </ul>
+                    </div>
                 </div>
                 `
     })
@@ -17,7 +19,7 @@ const dynamicCards = (teamMembers) => {
 
 const lastData = (member) =>{
     if(member.type === "Manager") return `<li class="list-group-item">Office number: ${member.office}</li>`
-    if(member.type === "Engineer") return `<li class="list-group-item git" data-git="${member.github}">Github: ${member.github}</li>`
+    if(member.type === "Engineer") return `<li class="list-group-item">Github: <a href="https://www.github.com/${member.github}" target="_blank">${member.github}</a></li>`
     if(member.type === "Intern") return `<li class="list-group-item">School: ${member.school}</li>`
 }
 
@@ -39,7 +41,7 @@ const generate = (data) =>{
         </header>
     
         <main>
-            <div id="members-container" class="d-flex">
+            <div id="members-container" class="d-flex justify-content-center flex-wrap mt-5 mb-5">
                 ${cards}
             </div>
         </main>
